@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import plants from "../utils";
 
-function PlantSelection({ onAddToCart, cart }) {
+function PlantSelection() {
+  const cart = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
   // Helper to check if plant is in cart
   const isInCart = (plantId) =>
     cart.some((item) => item.plantDetail.id === plantId);
@@ -38,7 +41,9 @@ function PlantSelection({ onAddToCart, cart }) {
                         ? "bg-green-600 hover:bg-green-700"
                         : "bg-blue-600 hover:bg-blue-700"
                     }`}
-                    onClick={() => onAddToCart(plantDetail)}
+                    onClick={() =>
+                      dispatch({ type: "cart/addToCart", payload: plantDetail })
+                    }
                   >
                     {inCart ? "Added to Cart" : "Add to Cart"}
                   </button>

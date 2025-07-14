@@ -1,20 +1,20 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateQuantity, removeFromCart } from "../store";
+import { useNavigate } from "react-router-dom";
 
-function ShoppingCart({ cart, onUpdateQuantity, onRemove, onClose }) {
+function ShoppingCart() {
+  const cart = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const grandTotal = cart.reduce(
     (sum, item) => sum + item.quantity * parseFloat(item.plantDetail.price),
     0
   );
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded shadow-lg w-[700px] max-h-[90vh] overflow-y-auto relative">
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-        >
-          Close
-        </button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 py-8">
+      <div className="bg-white p-6 rounded shadow-lg w-full max-w-2xl overflow-x-auto">
         <h2 className="text-2xl font-bold mb-4 text-center">Shopping Cart</h2>
         {cart.length === 0 ? (
           <div className="text-center text-gray-500">Your cart is empty.</div>
@@ -49,7 +49,12 @@ function ShoppingCart({ cart, onUpdateQuantity, onRemove, onClose }) {
                       <button
                         className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
                         onClick={() =>
-                          onUpdateQuantity(plantDetail.id, quantity - 1)
+                          dispatch(
+                            updateQuantity({
+                              plantId: plantDetail.id,
+                              newQuantity: quantity - 1,
+                            })
+                          )
                         }
                         disabled={quantity <= 1}
                       >
@@ -59,7 +64,12 @@ function ShoppingCart({ cart, onUpdateQuantity, onRemove, onClose }) {
                       <button
                         className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
                         onClick={() =>
-                          onUpdateQuantity(plantDetail.id, quantity + 1)
+                          dispatch(
+                            updateQuantity({
+                              plantId: plantDetail.id,
+                              newQuantity: quantity + 1,
+                            })
+                          )
                         }
                       >
                         +
@@ -72,7 +82,7 @@ function ShoppingCart({ cart, onUpdateQuantity, onRemove, onClose }) {
                   <td className="border px-4 py-2 text-center">
                     <button
                       className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-                      onClick={() => onRemove(plantDetail.id)}
+                      onClick={() => dispatch(removeFromCart(plantDetail.id))}
                     >
                       Remove
                     </button>
@@ -84,6 +94,21 @@ function ShoppingCart({ cart, onUpdateQuantity, onRemove, onClose }) {
         )}
         <div className="text-right text-xl font-semibold mt-4">
           Grand Total: ${grandTotal.toFixed(2)}
+        </div>
+        <div className="flex justify-between mt-8 gap-4">
+          <button
+            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 font-semibold w-1/2"
+            onClick={() => navigate("/SelectionPage")}
+          >
+            Continue Shopping
+          </button>
+          <button
+            className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 font-semibold w-1/2"
+            onClick={() => alert("Checkout functionality coming soon!")}
+            disabled={cart.length === 0}
+          >
+            Checkout
+          </button>
         </div>
       </div>
     </div>

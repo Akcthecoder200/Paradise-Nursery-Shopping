@@ -10,7 +10,7 @@ function Layout({ setPage }) {
           <h1 className="text-2xl font-bold leading-tight">Paradise Nursery</h1>
 
           <button onClick={() => setPage("plants")}>
-            <h3 className="text-white">Plants</h3>
+            <h3 className="text-2xl font-bold ">Plants</h3>
           </button>
         </div>
       </nav>
