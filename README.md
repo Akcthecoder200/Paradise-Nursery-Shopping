@@ -1,8 +1,8 @@
-# Conference Expense Planner
+# Paradise Nursery Shopping
 
 ## Short Description
 
-Conference Expense Planner is a modern web application designed to help users efficiently plan and manage expenses for conferences or events. It allows users to select meals, venue rooms, and add-ons, providing a real-time calculation of total costs and a seamless, interactive experience.
+Paradise Nursery Shopping is a modern web application that allows users to browse, select, and purchase a variety of plants. The app features a seamless shopping experience with a real-time cart, quantity controls, and a visually appealing interface.
 
 ---
 
@@ -17,12 +17,11 @@ Conference Expense Planner is a modern web application designed to help users ef
 
 ## Features
 
-- **Meal Selection:** Choose from a variety of meal options for your event attendees.
-- **Venue Room Selection:** Select and manage different types of rooms with capacity and cost details.
-- **Add-on Selection:** Add extra services or devices (e.g., projectors, microphones) with quantity controls.
-- **Real-time Cost Calculation:** Instantly see the total cost update as you make selections.
+- **Plant Selection:** Browse a curated list of plants, view images, names, and prices.
+- **Add to Cart:** Add plants to your shopping cart directly from the selection page.
+- **Quantity Controls:** Adjust the quantity of each plant in your cart or from the plant card.
+- **Shopping Cart:** View all selected plants in a modal cart, update quantities, remove items, and see the grand total in real time.
 - **Responsive UI:** Clean, modern, and mobile-friendly interface.
-- **Popup Summary:** View a detailed summary of all selected options before finalizing.
 
 ---
 
@@ -31,8 +30,8 @@ Conference Expense Planner is a modern web application designed to help users ef
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/conference-expense-planner.git
-   cd conference-expense-planner
+   git clone https://github.com/yourusername/paradise-nursery-shopping.git
+   cd paradise-nursery-shopping
    ```
 
 2. **Install dependencies:**
@@ -56,24 +55,32 @@ Conference Expense Planner is a modern web application designed to help users ef
 
 ## Usage Instructions
 
-- **Select Meals:** Navigate to the meals tab and choose meal options for your attendees.
-- **Select Venue Rooms:** Go to the venue tab, select room types, and adjust quantities as needed.
-- **Add Add-ons:** In the add-ons tab, pick extra devices or services and set their quantities.
-- **View Summary:** Click the summary popup to review all selections and the total cost.
-- **Switch Tabs:** Your selections persist as you navigate between tabs.
+- **Browse Plants:** The main page displays a grid of available plants with images, names, and prices.
+- **Add to Cart:** Click the "Add to Cart" button on any plant to add it to your shopping cart. If already added, the button will indicate so.
+- **Adjust Quantities:** Use the + and - buttons on the plant card or in the shopping cart to change the quantity of each plant.
+- **View Cart:** Click the cart icon or button to open the shopping cart modal, where you can review your selections, update quantities, remove items, and see the grand total.
+- **Close Cart:** Click the "Close" button to return to browsing.
+
+---
+
+## Key Components
+
+- **PlantSelection:** Displays a grid of all available plants. Allows users to add plants to the cart and visually indicates which plants are already in the cart.
+- **PlantCard:** Shows individual plant details with image, name, price, and quantity controls (+/- buttons). Updates the selected quantity and manages the selected plants state.
+- **ShoppingCart:** Modal component that lists all plants added to the cart, with options to update quantities, remove items, and view the grand total. Includes a close button to exit the cart view.
 
 ---
 
 ## Project Structure
 
 ```
-Conference Expense Planner/
+Paradise Nursery Shopping/
 ├── public/
-│   └── images/           # Static images for UI
+│   └── images/           # Plant images for the UI
 ├── src/
-│   ├── components/       # React components (MealSelection, RoomSelection, AddonSelection, etc.)
+│   ├── components/       # React components (PlantSelection, PlantCard, ShoppingCart, etc.)
 │   ├── assets/           # Static assets (e.g., SVGs)
-│   ├── utils.js          # Utility functions and data
+│   ├── utils.js          # Plant data and utility functions
 │   ├── App.jsx           # Main app entry
 │   ├── main.jsx          # React DOM entry point
 │   └── index.css         # Global styles (Tailwind)
