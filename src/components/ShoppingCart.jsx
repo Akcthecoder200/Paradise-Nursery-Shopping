@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateQuantity, removeFromCart } from "../store";
 import { useNavigate } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
 
 function ShoppingCart() {
   const cart = useSelector((state) => state.cart.items);
@@ -15,7 +16,9 @@ function ShoppingCart() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 py-8">
       <div className="bg-white p-6 rounded shadow-lg w-full max-w-2xl overflow-x-auto">
-        <h2 className="text-2xl font-bold mb-4 text-center">Shopping Cart</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center flex items-center justify-center gap-2">
+          <FaShoppingCart className="inline-block mb-1" /> Shopping Cart
+        </h2>
         {cart.length === 0 ? (
           <div className="text-center text-gray-500">Your cart is empty.</div>
         ) : (

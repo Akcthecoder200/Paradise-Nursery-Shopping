@@ -4,6 +4,7 @@ import { addToCart, updateQuantity, removeFromCart } from "../store";
 import Layout from "./Layout";
 import PlantSelection from "./PlantSelection";
 import { useNavigate } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
 
 function SelectionPage() {
   const [page, setPage] = useState("plants");
@@ -33,10 +34,11 @@ function SelectionPage() {
 
       <div className="flex justify-end m-4">
         <button
-          className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 font-semibold"
+          className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 font-semibold flex items-center gap-2"
           onClick={() => navigate("/cart")}
         >
-          Shopping Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)})
+          <FaShoppingCart className="inline-block mb-1" />(
+          {cart.reduce((sum, item) => sum + item.quantity, 0)})
         </button>
       </div>
 
